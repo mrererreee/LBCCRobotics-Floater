@@ -30,7 +30,7 @@ void communicationTask(void *parameter){
 
       input.toCharArray(msg.message, sizeof(msg.message)); //converts input to array and stores in msg.message structure.
 
-      xQueueSend(airSigRxQueue, &msg, portMAX_DELAY); // add message to Queue(airSigRxQueue), message passed by reference(&), release core until next task.
+      xQueueSend(airSigRxQueue, &msg, pdMS_TO_TICKS(10)); // add message to Queue(airSigRxQueue), message passed by reference(&), release core until next task.
     }
 
     if(xQueueReceive(airSigTxQueue, &msg, 0)){
@@ -53,12 +53,12 @@ void appTask(void *parameter) {
       {
         strcpy(tx.message, "DATA COLLECTED HERE"); //tx.message container filled with string.
 
-        xQueueSend(airSigTxQueue, &tx, portMAX_DELAY); //add message to Queue(airSigTxQueue), message passed by reference(&), release until next task. | Releases core, might need to change depending on tasks.
+        xQueueSend(airSigTxQueue, &tx, pdMS_TO_TICKS(10)); //add message to Queue(airSigTxQueue), message passed by reference(&), release until next task. | Releases core, might need to change depending on tasks.
       }
       else {
         strcpy(tx.message, "COMMAND NOT AVAILABLE OR COMMAND DOES NOT EXIST");
 
-        xQueueSend(airSigTxQueue, &tx, portMAX_DELAY);
+        xQueueSend(airSigTxQueue, &tx, pdMS_TO_TICKS(10));
       }
     }
   }
