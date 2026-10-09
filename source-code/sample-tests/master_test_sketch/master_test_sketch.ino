@@ -9,7 +9,7 @@
 #include "MS5837.h"
  
 // PIN DECLARATIONS
-#define NEOPIXEL_LED 32
+#define NEOPIXEL_LED 27
 #define LED_COUNT 24 // number of LEDs on NeoPixel
 const int LED_PIN = 23; // for photoresistor testing
 const int PHOTORESISTOR_PIN = 22;
@@ -64,6 +64,8 @@ void setup() {
   sensor.setFluidDensity(997); // kg/m^3 (freshwater, 1029 for seawater)
   blueSerial.begin(9600, SERIAL_8N1, RXD2, TXD2);
   pinMode(LED_PIN, OUTPUT);
+  pinMode(ACTUATOR_IN1, OUTPUT);
+  pinMode(ACTUATOR_IN2, OUTPUT);
  
 }
  
