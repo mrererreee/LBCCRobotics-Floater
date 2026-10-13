@@ -5,7 +5,6 @@
 #define STATE_PIN 17
 
 HardwareSerial blueSerial(2); //OBJECT CREATED AND SET TO UART2 | UART2 IS SAME AS UART1 WITH DEFAULT PINS 15 & 16.
-char inputs [100];
 
 void setup()
 {
